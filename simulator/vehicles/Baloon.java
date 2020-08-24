@@ -1,5 +1,11 @@
 package simulator.vehicles;
 
-public class Baloon {
+// import weather.Coordinates;
 
+public class Baloon {
+	String vehicleName;
+	int theCoordinates;
+	public Baloon (String name, int Coordinates) {
+
+	}
 }
