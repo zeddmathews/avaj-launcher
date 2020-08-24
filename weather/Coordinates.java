@@ -11,15 +11,15 @@ public class Coordinates {
 		this.latitude = latitude;
 		this.height = height;
 	}
-	public static int getLongitude(int longitude) {
-		return longitude;
+	public int getLongitude(int longitude) {
+		return this.longitude;
 	}
 
-	public static int getLatitude(int latitude) {
-		return latitude;
+	public int getLatitude(int latitude) {
+		return this.latitude;
 	}
 
-	public static int getHeight(int height) {
-		return height;
+	public int getHeight(int height) {
+		return this.height;
 	}
 }
