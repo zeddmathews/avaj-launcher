@@ -17,4 +17,8 @@ public class JetPlane extends Aircraft implements Flyable {
 	public void registerTower(WeatherTower weatherTower) {
 		System.out.println(this.weatherTower); // temp get rid of warn
 	}
+
+	// public void test() {
+
+	// }
 }

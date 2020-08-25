@@ -11,7 +11,7 @@ public class WeatherProvider {
 	private WeatherProvider() {}
 
 	public static WeatherProvider getProvider() {
-		return weatherprovider; // temp get rid of warn
+		return new WeatherProvider();
 	}
 
 	public String getCurrentWeather(Coordinates coordinates) {
