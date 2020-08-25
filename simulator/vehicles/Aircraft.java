@@ -2,18 +2,21 @@ package simulator.vehicles;
 
 import weather.Coordinates;
 
-public class Aircraft {
-	private long id;
-	private String name;
+public abstract class Aircraft {
+	protected long id;
+	protected String name;
 	protected Coordinates coordinates;
-	private long idCounter;
+	protected String type;
+	private static long idCounter = 1;
 
 	protected Aircraft(String name, Coordinates coordinates) {
-		nextId(); // temp get rid of warn
-		System.out.println(id + this.name); // temp get rid of warn
+		this.id = this.nextId();
+		this.name = name;
+		this.coordinates = coordinates;
+		this.type = "Aircraft";
 	}
 
 	private long nextId() {
-		return this.idCounter;
+		return Aircraft.idCounter++;
 	}
 }

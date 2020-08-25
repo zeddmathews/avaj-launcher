@@ -1,22 +1,21 @@
 package weather;
 
 public class WeatherProvider {
-	private WeatherProvider weatherprovider;
-	private String [] weather = {
+	private static WeatherProvider weatherprovider;
+	private static String [] weather = {
 		"RAIN",
 		"FOG",
 		"SUN",
 		"SNOW"
 	};
-	private WeatherProvider() {
+	private WeatherProvider() {}
 
-	}
-
-	public WeatherProvider getProvider() {
-		return this.weatherprovider; // temp get rid of warn
+	public static WeatherProvider getProvider() {
+		return weatherprovider; // temp get rid of warn
 	}
 
 	public String getCurrentWeather(Coordinates coordinates) {
+		// make randomizer to get weather type or build specific ranges for weather type
 		return weather[0]; // temp get rid of warn
 	}
 }
