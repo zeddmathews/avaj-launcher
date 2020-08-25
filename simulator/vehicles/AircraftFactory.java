@@ -14,9 +14,12 @@ public abstract class AircraftFactory {
 			Helicopter helicopter = new Helicopter(name, coordinates);
 			return helicopter;
 		}
-		else {
+		else if (lowerType.equals("jetplane")){
 			JetPlane jetPlane = new JetPlane(name, coordinates);
 			return jetPlane;
+		}
+		else {
+			return null;
 		}
 	}
 }
