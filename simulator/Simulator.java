@@ -32,12 +32,12 @@ public class Simulator {
 				BufferedReader br = new BufferedReader(new FileReader(args[0]));
 				String line = "";
 				while (line != null) {
-					// if (line == null || line.length() == 0) {
-
-					// }
 					// String arr[] = line.split(" ");
-					System.out.println(line.length());
 					line = br.readLine();
+					if (line == null || line.length() == 0) {
+						continue;
+					}
+					System.out.println(line.length());
 					System.out.println(line);
 				}
 				br.close();
