@@ -31,14 +31,21 @@ public class Simulator {
 			}
 				BufferedReader br = new BufferedReader(new FileReader(args[0]));
 				String line = "";
+				int lineNum = 0;
 				while (line != null) {
 					// String arr[] = line.split(" ");
+					if (lineNum == 1) {
+						final int totalSims = Integer.parseInt(line);
+						// System.out.println("Am here:" + line + "heh");
+						System.out.println(totalSims);
+					}
 					line = br.readLine();
 					if (line == null || line.length() == 0) {
 						continue;
 					}
-					System.out.println(line.length());
-					System.out.println(line);
+					// System.out.println(line.length());
+					// System.out.println(line);
+					lineNum++;
 				}
 				br.close();
 			} catch (FileNotFoundException e) {

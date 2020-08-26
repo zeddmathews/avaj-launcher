@@ -6,7 +6,7 @@ import simulator.vehicles.Flyable;
 
 
 public abstract class Tower {
-	private ArrayList<Flyable> observers = new ArrayList<Flyable>();
+	private ArrayList<Flyable> observers = new ArrayList<>();
 	public void register(Flyable flyable) {
 		observers.add(flyable);
 	}
@@ -16,6 +16,6 @@ public abstract class Tower {
 	}
 
 	protected void conditionsChanged() {
-		
+
 	}
 }

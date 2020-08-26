@@ -29,15 +29,15 @@ public class Coordinates {
 			this.height = height;
 		}
 	}
-	public int getLongitude(int longitude) {
+	public int getLongitude() {
 		return this.longitude;
 	}
 
-	public int getLatitude(int latitude) {
+	public int getLatitude() {
 		return this.latitude;
 	}
 
-	public int getHeight(int height) {
+	public int getHeight() {
 		return this.height;
 	}
 }
