@@ -1,19 +1,31 @@
 package simulator;
 
-
 import java.io.IOException;
+import java.util.ArrayList;
 import java.io.BufferedReader;
+// import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.File;
-import java.io.FileWriter;
+// import java.io.File;
+// import java.io.FileWriter;
 
 // import weather.Coordinates;
 import simulator.exceptions.StandardException;
+import simulator.vehicles.AircraftFactory;
+import simulator.vehicles.Flyable;
 
 public class Simulator {
 	// Coordinates coordinates = new Coordinates(20, 30, 10);
 	// Should be where everything gets put together??
+	static BufferedReader br;
+	static WeatherTower weatherTower;
+	static ArrayList<Flyable> vehicles;
+	static String arr[];
+	static int totalSims;
+	static int countSim;
+	public void createTextFile () {
+
+	}
 	public static void main(String[] args) throws StandardException, IOException, FileNotFoundException {
 		// read file										done
 		// error handle file								wip
@@ -33,70 +45,79 @@ public class Simulator {
 				throw new StandardException("Incorrect number of parameters. Use a single parameter of type file path");
 			}
 			else {
-				BufferedReader br = new BufferedReader(new FileReader(args[0]));
+				br = new BufferedReader(new FileReader(args[0]));
+				vehicles = new ArrayList<>();
 				String line = "";
 				int lineNum = 0;
-				String arr[] = null;
-				int totalSims = 0;
-				String acType = "";
-				String acName = "";
-				int lat = 0;
+				String vehicleType = "";
+				String vehicleName = "";
 				int longi = 0;
+				int lat = 0;
 				int height = 0;
-				// get totalSims value
+				// get totalSims value and create weatherTower
 				while (line != null) {
-					arr = line.split(" ");
-					if (lineNum == 1) {
+					line = br.readLine();
+					if (lineNum == 0) {
 						totalSims = Integer.parseInt(line);
-						// System.out.println("Am here:" + line + "heh");
-						lineNum++;
+						weatherTower = new WeatherTower();
 						break ;
 					}
-					line = br.readLine();
 					if (line == null || line.length() == 0) {
 						continue ;
 					}
-					// System.out.println(line.length());
-					// System.out.println(line);
 					lineNum++;
-					// System.out.println(arr);
 				}
-				// handle simulations
+				System.out.println(lineNum);
+				// handle coordinates and vehicle creation
 				while (line != null) {
-					arr = line.split(" ");
-					if (arr.length != 5 || arr.length != 0) {
+					line = br.readLine();
+					lineNum++;
+					if (line == null || line.length() == 0) {
 						continue ;
 					}
-					if (arr.length == 5) {
-						acType = arr[0];
-						acName = arr[1];
-						lat = Integer.parseInt(arr[2]);
-						longi = Integer.parseInt(arr[3]);
-						height = Integer.parseInt(arr[4]);
-						File newFile = new File("simulations.txt");
-						FileWriter writeTo = new FileWriter(newFile);
-						writeTo.write(acType);
-						writeTo.write(acName);
-						writeTo.write(lat);
-						writeTo.write(longi);
-						writeTo.write(height);
-						writeTo.close();
+					arr = line.split(" ");
+					if (arr.length == 0) {
+						continue ;
 					}
-					System.out.println(arr);
+					if (arr.length != 5) {
+						throw new StandardException("Scenario file has an invalid line at line: " + lineNum);
+					}
+					if (arr.length == 5) {
+						try {
+							vehicleType = arr[0];
+							vehicleName = arr[1];
+							longi = Integer.parseInt(arr[2]);
+							lat = Integer.parseInt(arr[3]);
+							height = Integer.parseInt(arr[4]);
+							if (lat < 1 || longi < 1 || height < 1) {
+								throw new StandardException("Negative coordinates not allowed");
+							}
+							else {
+								vehicles.add(AircraftFactory.newAircraft(vehicleType, vehicleName, longi, lat, height));
+							}
+						}
+						catch (Exception e) {
+							e.getMessage();
+						}
+					}
 				}
-				System.out.println(totalSims);
-				// System.out.println(arr.length);
-				// for (String aircraft : arr) {
-				// 	System.out.println(aircraft);
-				// }
 				br.close();
+				for (Flyable vehicle : vehicles) {
+					System.out.println("nani");
+					vehicle.registerTower(weatherTower);
+				}
+				countSim = 1;
+				while (countSim < totalSims) {
+					// System.out.println("Simulation number " + countSim++);
+					countSim++;
+				}
 			}
-			} catch (FileNotFoundException e) {
-				System.out.println("File not found");
-			} catch (IOException e){
-				System.out.println(e.getMessage());
-			} catch (StandardException e) {
-				System.out.println(e.getMessage());
-			}
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found");
+		} catch (IOException e){
+			System.out.println(e.getMessage());
+		} catch (StandardException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }

@@ -9,6 +9,7 @@ public abstract class Tower {
 	private ArrayList<Flyable> observers = new ArrayList<>();
 	public void register(Flyable flyable) {
 		observers.add(flyable);
+		// System.out.println(flyable);
 	}
 
 	public void unregister(Flyable flyable) {
