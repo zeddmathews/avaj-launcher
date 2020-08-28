@@ -103,12 +103,11 @@ public class Simulator {
 				}
 				br.close();
 				for (Flyable vehicle : vehicles) {
-					System.out.println("nani");
 					vehicle.registerTower(weatherTower);
 				}
 				countSim = 1;
 				while (countSim < totalSims) {
-					// System.out.println("Simulation number " + countSim++);
+					System.out.println("Simulation number " + countSim);
 					countSim++;
 				}
 			}
