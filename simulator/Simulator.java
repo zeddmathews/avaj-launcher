@@ -25,6 +25,7 @@ public class Simulator {
 		// create aircraft
 		// register aircraft to tower
 		// run number of sims
+		// put everything that happens into simulations.trxt
 		try {
 			if (args.length != 1) {
 				throw new StandardException("Incorrect number of parameters. Use a single parameter of type file path");

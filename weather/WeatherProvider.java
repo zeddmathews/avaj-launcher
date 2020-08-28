@@ -14,11 +14,9 @@ public class WeatherProvider {
 
 	public static WeatherProvider getProvider() {
 		if (weatherprovider == null) {
-			return new WeatherProvider();
+			weatherprovider = new WeatherProvider();
 		}
-		else {
-			return weatherprovider;
-		}
+		return weatherprovider;
 	}
 
 	public String getCurrentWeather(Coordinates coordinates) {

@@ -1,9 +1,10 @@
 package simulator.vehicles;
 
+import simulator.exceptions.StandardException;
 import weather.Coordinates;
 
 public abstract class AircraftFactory {
-	public static Flyable newAircraft(String type, String name, int longitude, int latitude, int height) {
+	public static Flyable newAircraft(String type, String name, int longitude, int latitude, int height) throws StandardException {
 		String lowerType = type.toLowerCase();
 		Coordinates coordinates = new Coordinates(longitude, latitude, height);
 		if (lowerType.equals("baloon")) {
@@ -19,7 +20,7 @@ public abstract class AircraftFactory {
 			return jetPlane;
 		}
 		else {
-			return null;
+			throw new StandardException("Invalid aircraft name");
 		}
 	}
 }

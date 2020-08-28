@@ -11,7 +11,8 @@ public class Baloon extends Aircraft implements Flyable {
 	}
 
 	public void updateConditions() {
-		//get weather from weathertower.getweather
+		// get weather from weathertower.getweather
+		// unregister on height == 0
 	}
 
 	public void registerTower(WeatherTower weatherTower) {
