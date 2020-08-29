@@ -28,16 +28,16 @@ public class Simulator {
 	}
 	public static void main(String[] args) throws StandardException, IOException, FileNotFoundException {
 		// read file										done
-		// error handle file								wip
+		// error handle file								done
 		// split lines										done
-			// first line == number of simulations			wip
+			// first line == number of simulations			done
 			// everyline after 5 instances
 			// first is aircraft name
 			// second is aircraft number
 			// three to five is lat, long, height
-		// create tower
-		// create aircraft
-		// register aircraft to tower
+		// create tower										done
+		// create aircraft									done
+		// register aircraft to tower						done
 		// run number of sims
 		// put everything that happens into simulations.trxt
 		try {
@@ -108,6 +108,7 @@ public class Simulator {
 				countSim = 1;
 				while (countSim < totalSims) {
 					System.out.println("Simulation number " + countSim);
+					weatherTower.changeWeather();
 					countSim++;
 				}
 			}

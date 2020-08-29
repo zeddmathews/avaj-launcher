@@ -1,5 +1,6 @@
 package simulator.vehicles;
 
+import java.util.HashMap;
 import simulator.WeatherTower;
 import weather.Coordinates;
 
@@ -12,6 +13,11 @@ public class JetPlane extends Aircraft implements Flyable {
 
 	public void updateConditions() {
 		String weather = weatherTower.getWeather(coordinates);
+		HashMap<String, String> weatherResponse = new HashMap<>();
+		weatherResponse.put("RAIN", "This RAIN has me soaked");
+		weatherResponse.put("FOG", "My vision is bad enough without all this FOG");
+		weatherResponse.put("SUN", "I don't have AC for this level of SUN");
+		weatherResponse.put("SNOW", "SNOW is mildly problematic without a barrier in between it and you");
 		if (weather.equals("RAIN")) {
 			this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude() + 5, this.coordinates.getHeight());
 		}
