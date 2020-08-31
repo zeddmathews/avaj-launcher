@@ -3,11 +3,9 @@ package simulator;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.BufferedReader;
-// import java.io.BufferedWriter;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-// import java.io.File;
-// import java.io.FileWriter;
 
 // import weather.Coordinates;
 import simulator.exceptions.StandardException;
@@ -23,6 +21,8 @@ public class Simulator {
 	static String arr[];
 	static int totalSims;
 	static int countSim;
+	static BufferedWriter bW;
+	static FileStuff writer = new FileStuff();
 	public void createTextFile () {
 
 	}
@@ -106,8 +106,9 @@ public class Simulator {
 					vehicle.registerTower(weatherTower);
 				}
 				countSim = 1;
-				while (countSim < totalSims) {
+				while (countSim <= totalSims) {
 					System.out.println("Simulation number " + countSim);
+					writer.writeData("Simulation #" + countSim);
 					weatherTower.changeWeather();
 					countSim++;
 				}
@@ -118,6 +119,8 @@ public class Simulator {
 			System.out.println(e.getMessage());
 		} catch (StandardException e) {
 			System.out.println(e.getMessage());
+		} finally {
+			writer.closeFile();
 		}
 	}
 }

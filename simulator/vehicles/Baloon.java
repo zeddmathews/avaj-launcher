@@ -3,16 +3,19 @@ package simulator.vehicles;
 import java.util.HashMap;
 import simulator.WeatherTower;
 import weather.Coordinates;
+import simulator.FileStuff;
 
 public class Baloon extends Aircraft implements Flyable {
 	private WeatherTower weatherTower;
+	FileStuff writer = new FileStuff();
+
 	public Baloon (String name, Coordinates coordinates) {
 		super(name, coordinates);
 		this.type = "Baloon";
 	}
 
 	public void updateConditions() {
-		String weather = weatherTower.getWeather(coordinates);
+		String weather = this.weatherTower.getWeather(this.coordinates);
 		HashMap<String, String> weatherResponse = new HashMap<>();
 		weatherResponse.put("RAIN", "This RAIN has me soaked");
 		weatherResponse.put("FOG", "My vision is bad enough without all this FOG");
@@ -33,6 +36,11 @@ public class Baloon extends Aircraft implements Flyable {
 		// unregister on height == 0
 		if (this.coordinates.getHeight() == 0) {
 			this.weatherTower.unregister(this);
+		}
+		writer.writeData(this.vehicleData() + ": " + weatherResponse.get(weather));
+
+		if (this.coordinates.getHeight() == 0) {
+			writer.writeData(this.vehicleData() + ": is landing. Coordinates: " + this.coordinates.coordsString());
 		}
 	}
 

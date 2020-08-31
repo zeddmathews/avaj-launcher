@@ -3,9 +3,12 @@ package simulator.vehicles;
 import java.util.HashMap;
 import simulator.WeatherTower;
 import weather.Coordinates;
+import simulator.FileStuff;
 
 public class Helicopter extends Aircraft implements Flyable {
 	private WeatherTower weatherTower;
+	FileStuff writer = new FileStuff();
+
 	public Helicopter(String name, Coordinates coordinates) {
 		super(name, coordinates);
 		this.type = "Helicopter";
@@ -32,6 +35,11 @@ public class Helicopter extends Aircraft implements Flyable {
 		}
 		if (this.coordinates.getHeight() == 0) {
 			this.weatherTower.unregister(this);
+		}
+		writer.writeData(this.vehicleData() + ": " + weatherResponse.get(weather));
+
+		if (this.coordinates.getHeight() == 0) {
+			writer.writeData(this.vehicleData() + ": is landing. Coordinates: " + this.coordinates.coordsString());
 		}
 	}
 

@@ -40,4 +40,8 @@ public class Coordinates {
 	public int getHeight() {
 		return this.height;
 	}
+
+	public String coordsString() {
+		return this.getLongitude() + " " + this.getLatitude() + " " + this.getHeight();
+	}
 }

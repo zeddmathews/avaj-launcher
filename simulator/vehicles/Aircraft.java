@@ -19,4 +19,9 @@ public abstract class Aircraft {
 	private long nextId() {
 		return Aircraft.idCounter++;
 	}
+
+	public String vehicleData() {
+		String data = this.type + '#' + this.name + '(' + this.id + ')';
+		return data;
+	}
 }
