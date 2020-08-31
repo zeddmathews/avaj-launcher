@@ -27,19 +27,6 @@ public class Simulator {
 
 	}
 	public static void main(String[] args) throws StandardException, IOException, FileNotFoundException {
-		// read file										done
-		// error handle file								done
-		// split lines										done
-			// first line == number of simulations			done
-			// everyline after 5 instances
-			// first is aircraft name
-			// second is aircraft number
-			// three to five is lat, long, height
-		// create tower										done
-		// create aircraft									done
-		// register aircraft to tower						done
-		// run number of sims
-		// put everything that happens into simulations.trxt
 		try {
 			if (args.length != 1) {
 				throw new StandardException("Incorrect number of parameters. Use a single parameter of type file path");
@@ -67,7 +54,6 @@ public class Simulator {
 					}
 					lineNum++;
 				}
-				System.out.println(lineNum);
 				// handle coordinates and vehicle creation
 				while (line != null) {
 					line = br.readLine();
@@ -107,7 +93,6 @@ public class Simulator {
 				}
 				countSim = 1;
 				while (countSim <= totalSims) {
-					System.out.println("Simulation number " + countSim);
 					writer.writeData("Simulation #" + countSim);
 					weatherTower.changeWeather();
 					countSim++;
