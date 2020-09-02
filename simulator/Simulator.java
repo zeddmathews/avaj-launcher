@@ -92,7 +92,7 @@ public class Simulator {
 					vehicle.registerTower(weatherTower);
 				}
 				countSim = 1;
-				while (countSim <= totalSims) {
+				while (countSim < totalSims) {
 					writer.writeData("Simulation #" + countSim);
 					weatherTower.changeWeather();
 					countSim++;
